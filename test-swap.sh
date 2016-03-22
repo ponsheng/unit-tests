@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo b main >> _tmp.gdb
+echo b main > _tmp.gdb
 echo r >> _tmp.gdb
 echo source scripts/create_list.gdb >> _tmp.gdb
 echo source scripts/printf_list.gdb >> _tmp.gdb
@@ -14,7 +14,7 @@ exec < $1
 read var
 echo 'create_list $head' $var >> _tmp.gdb
 
-exec < $1
+
 echo ' '>>$2
 echo 'set logging file '$2 >> _tmp.gdb
 
@@ -42,5 +42,6 @@ do
 done
 
 gdb -q -x _tmp.gdb bin-swap >> /dev/null
+cp _tmp.gdb tmp.gdb
 
 rm _tmp.gdb
